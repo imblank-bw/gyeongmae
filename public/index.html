@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모의경매 1.0</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <video id="background-video" autoplay loop muted>
+        <source src="background/background.mp4" type="video/mp4">
+    </video>
+    <div id="welcome-section">
+        <h2>욱컴퍼니 VALORANT 멸망전 [제1회] 모의경매</h2>
+        <button id="join-captain">팀장으로 들어가기</button>
+        <button id="join-spectator">관전자로 들어가기</button>
+        <p></p>
+        <p></p>
+        <span style:color="red">관리자만 이용해주세요</span>
+        <button id="join-admin">관리자로 들어가기</button>
+    </div>
+
+    <div id="name-entry" style="display: none;">
+        <h2>이름을 입력하세요</h2>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button id="submitName">확인</button>
+    </div>
+
+    <div id="container" style="display: none;">
+        <div id="main-section">
+            <!-- Teams Section -->
+            <div id="teams-section" class="teams-section">
+                <h2>팀</h2>
+                <div id="teams"></div>
+                <div id="captain-list">
+                    <!-- Captains' info will be appended here dynamically -->
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div id="content-container">
+                <!-- Player Auction Section -->
+                <div id="player-auction-section">
+                    <div id="current-auction-player">경매 시작 대기 중...</div>
+                        <div id="chat-box"></div>
+    
+                    <!-- Timer and Bid Controls Container -->
+                    <div id="timer-bid-container">
+                        <!-- Timer Section -->
+                        <div id="timer-points">
+                            <div id="timer-section">
+                                <p id="auction-timer"></p>
+                                    <div id="timer-bar"></div>
+                                    <div id="auctionTimer" class="timer-text"></div>
+                                    <span id="countdown-timer"></span> <!-- For the 3-second countdown -->
+                                    <span id="bidding-timer"></span>    <!-- For the 15-second bidding timer -->
+                            </div>
+                            <div id="points-section">
+                                <p id="points-remaining"></p>
+                            </div>
+                        </div>
+                        <!-- Bid Controls Section -->
+                        <div id="bid-controls-section">
+                            <div id="bid-buttons">
+                                <button data-increment="5">+5</button>
+                                <button data-increment="10">+10</button>
+                                <button data-increment="25">+25</button>
+                                <button data-increment="50">+50</button>
+                                <button data-increment="100">+100</button>
+                            </div>
+                            <input type="number" id="manual-bid-input" placeholder="포인트 입력" />
+                            <button id="place-bid">입찰</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auction Lists Section -->
+            <div id="auction-lists">
+                <div id="auction-order-section">
+                    <h3>경매순서</h3>
+                    <ul id="auction-order-list"></ul>
+                </div>
+                <div id="void-auction-section">
+                    <h3>유찰순서</h3>
+                    <ul id="void-auction-list"></ul>
+                </div>
+                
+                <!-- Bottom Controls Section -->
+                <div id="bottom-controls">
+                    <!-- Form for Adding Players -->
+                    <form id="addPlayerForm">
+                        <div id="playerFields">
+                            <div class="form-group">
+                                <label for="playerName">선수 이름:</label>
+                                <input type="text" id="playerName" name="playerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="playerTier">선수 티어:</label>
+                                <select id="playerTier" name="playerTier" required>
+                                    <option value="">티어를 선택하세요</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <!-- Add more tiers as needed -->
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit">선수 추가</button>
+                        <!-- Randomize Order Button -->
+                    </form>
+
+                    <button id="randomizeOrder">무작위로 순서 변경</button>
+                    <button id="start-auction">경매 시작</button>
+                    <button id="start-void-auction">유찰 경매 시작</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
