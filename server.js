@@ -438,9 +438,6 @@ function endAuction() {
     }
 }
 
-
-
-
 function startAuctionForPlayer(player) {
     io.emit('playerAuction', { name: player.name, tier: player.tier });
 }
