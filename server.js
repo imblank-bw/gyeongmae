@@ -184,14 +184,19 @@ io.on('connection', (socket) => {
         const teamColor = teamColors[teamName] || 'black';
     
         // Check if the bid exceeds the team's remaining points (excluding 0 bids)
-        if (increment > team.points && increment !== 0) {
-            socket.emit('chatMessage', `Bid exceeds available points for ${teamName}.`, 'warning');
+        if (increment > team.points) {
+            socket.emit('chatMessage', `입찰가가 ${teamName}의 사용 가능한 포인트를 초과했습니다.`, 'warning');
+            return;
+        }
+
+        if (currentTotalBid >= team.points) {
+            socket.emit('chatMessage', `입찰가가 ${teamName}의 사용 가능한 포인트를 초과했습니다.`, 'warning');
             return;
         }
     
         // Check if adding the player would exceed the 4-player cap
         if (team.members.length >= 5) {
-            socket.emit('chatMessage', `Cannot add more than 4 players to ${teamName}.`, 'warning');
+            socket.emit('chatMessage', `${teamName}에 5명 이상의 플레이어를 추가할 수 없습니다.`, 'warning');
             return;
         }
     
@@ -203,7 +208,7 @@ io.on('connection', (socket) => {
     
         // Check if the team already has a player of the same tier
         if (team.members.some(member => member.tier === currentAuctionPlayer.tier)) {
-            socket.emit('chatMessage', `You already have a player of tier ${currentAuctionPlayer.tier} in ${teamName}.`, 'warning');
+            socket.emit('chatMessage', `${teamName}에 ${currentAuctionPlayer.tier} 등급의 플레이어가 이미 있습니다.`, 'warning');
             return;
         }
     
