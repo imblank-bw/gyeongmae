@@ -190,7 +190,7 @@ io.on('connection', (socket) => {
         }
     
         // Check if adding the player would exceed the 4-player cap
-        if (team.members.length >= 4) {
+        if (team.members.length >= 5) {
             socket.emit('chatMessage', `Cannot add more than 4 players to ${teamName}.`, 'warning');
             return;
         }
