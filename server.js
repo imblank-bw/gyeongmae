@@ -157,7 +157,7 @@ io.on('connection', (socket) => {
         currentBidder = null;
         io.emit('playerAuction', currentAuctionPlayer);
         io.emit('chatMessage', '<div style="text-align: center;">=========================================</div>');
-        io.emit('chatMessage', `${currentAuctionPlayer.tier}티어: ${currentAuctionPlayer.name}님의 유찰경매가 시작했습니다!`, 'success');
+        io.emit('chatMessage', `${currentAuctionPlayer.tier} 티어: ${currentAuctionPlayer.name}님의 유찰경매가 시작했습니다!`, 'success');
         io.emit('playAudio', 'start.mp3');
         io.emit('playAudioLoop', 'ticking.mp3');
         io.emit('auctionStatusUpdate', { auctionInProgress });
@@ -184,7 +184,7 @@ io.on('connection', (socket) => {
         const teamColor = teamColors[teamName] || 'black';
     
         // Check if the bid exceeds the team's remaining points (excluding 0 bids)
-        if (increment > team.points) {
+        if ((currentTotalBid !== null && (currentTotalBid + increment) > team.points) || (increment > team.points)) {
             socket.emit('chatMessage', `입찰가가 ${teamName}의 사용 가능한 포인트를 초과했습니다.`, 'warning');
             return;
         }

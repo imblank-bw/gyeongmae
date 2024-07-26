@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.on('playAudio', (fileName) => {
         const audio = new Audio(`/audio/${fileName}`);
+        audio.volume = 0.2;
         audio.play();
     });
 
@@ -244,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loopAudio = new Audio(`/audio/${fileName}`);
     loopAudio.loop = true;
-    loopAudio.volume = 0.1;
+    loopAudio.volume = 0.08;
     loopAudio.play();
     });
 
