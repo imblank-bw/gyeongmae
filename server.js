@@ -55,14 +55,6 @@ io.on('connection', (socket) => {
             const newTeamName = `Team ${newTeamNumber}`;
             let initialPoints = 1000;
     
-            if (newTeamName === "Team 1") {
-                initialPoints = 800;
-            } else if (newTeamName === "Team 2") {
-                initialPoints = 850;
-            } else if (newTeamName === "Team 3") {
-                initialPoints = 900;
-            }
-    
             teams[newTeamName] = {
                 captainName: name,
                 points: initialPoints,
