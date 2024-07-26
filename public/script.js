@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     loopAudio = new Audio(`/audio/${fileName}`);
     loopAudio.loop = true;
-    loopAudio.volume = 0.3;
+    loopAudio.volume = 0.1;
     loopAudio.play();
     });
 
