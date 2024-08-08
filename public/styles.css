@@ -92,7 +92,7 @@ body {
 
 /* Teams Section */
 .teams-section {
-    width: 33%; /* Increased width for Teams section */
+    width: 27.5%; /* Increased width for Teams section */
     margin-top: 20px; /* Consistent top margin */
     box-sizing: border-box; /* Ensure padding and border are included in width */
     border-radius: 8px; /* Rounded corners */
@@ -135,8 +135,8 @@ body {
 #content-container {
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    width: 33%;
-    padding: 20px; /* Adjust padding as needed */
+    width: 43%;
+    padding-top: 20px; /* Adjust padding as needed */
     overflow: hidden; /* Hide any overflow content */
     box-sizing: border-box; /* Include padding and border in height calculations */
 }
@@ -207,7 +207,6 @@ body {
     display: flex;
     flex-direction: row; /* Stack children vertically */
     gap: 20px; /* Space between timer-bid container and other sections */
-    padding: 20px; /* Add some padding around the container */
 }
 
 /* Bid Controls Section */
@@ -283,7 +282,7 @@ body {
 
 /* Auction Lists Section */
 #auction-lists {
-    width: 33%; /* Adjust width as needed */
+    width: 27.5%; /* Adjust width as needed */
     display: flex;
     flex-direction: column;
     gap: 20px; /* Space between sections */
@@ -313,14 +312,15 @@ body {
 #chat-box {
     flex: 1; /* Allow it to grow and take available space */
     overflow-y: auto; /* Enable scrolling if content exceeds height */
-    padding: 20px; /* Adjust padding as needed */
+    padding: 10px; /* Adjust padding as needed */
     border: 1px solid #333;
     background-color: #1e1e1e; /* Darker background */
     color: #e0e0e0; /* Light text color */
     border-radius: 8px;
     box-sizing: border-box; /* Include padding in height calculations */
-    margin-bottom: 20px; /* Space between sections */
-    max-height: 400px;
+    margin-bottom: 10px; /* Space between sections */
+    margin-top: 10px; /* Space between sections */
+    max-height: 110px;
     background-color: rgba(46, 46, 46, 0.8); /* Default dark background with translucency */
     border: 2px solid rgb(204, 204, 204); /* Lighter border */
     border-radius: 8px; /* Rounded corners */
@@ -671,4 +671,38 @@ body {
     flex-direction: column; /* Stack children vertically */
     gap: 10px; /* Space between timer and points section */
     width: 100%; /* Full width of its parent container */
+}
+
+#player-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#player-picture {
+    width: 800px; /* Adjust size as needed */
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Shadow for depth */
+    color: #e0e0e0; /* Light text color */
+    text-align: center; /* Center text horizontally */
+    background-color: #333; /* Dark background */
+    border: 2px solid rgb(204, 204, 204); /* Lighter border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    border-radius: 8px; /* Rounded corners */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    align-content: center;
+    display:flex;
+}
+
+#player-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#player-name, #player-tier {
+    font-size: 1.2em;
+    margin: 0;
 }

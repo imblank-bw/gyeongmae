@@ -142,6 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000); // Decrease width every second
     }
     
+    function updatePlayerImage(player) {
+        // Assuming images are located in 'public/images' and named exactly as player names with '.png' extension
+        const imagePath = `images/${player.name}.png`;
+        const playerImageElement = document.getElementById('player-picture'); // Ensure you have an element with this ID in your HTML
+    
+        // Update the src attribute to load the correct image
+        playerImageElement.src = imagePath;
+    }
+
     function resetTimerBar() {
         barWidth = 100;
         timerBar.style.width = barWidth + '%';
@@ -273,7 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     socket.on('playerAuction', (player) => {
-        elements.currentAuctionPlayer.innerHTML = ''; // Clear existing content
+        console.log('Received player data:', player); // Debug log
+    
+        updatePlayerImage(player);
     
         // Create container for player info
         const playerContainer = document.createElement('div');
@@ -282,24 +293,24 @@ document.addEventListener('DOMContentLoaded', () => {
         playerContainer.style.justifyContent = 'center';
         playerContainer.style.padding = '10px';
         playerContainer.style.borderRadius = '8px';
-    
+        
         // Create text for "Currently Auctioning:"
         const auctioningText = document.createElement('div');
         auctioningText.textContent = '현재 경매 중:';
         auctioningText.style.fontSize = '1em';
         auctioningText.style.fontWeight = 'bold';
         auctioningText.style.marginRight = '10px';
-    
+        
         // Create tier icon
         const tierIcon = document.createElement('div');
         tierIcon.style.width = '40px';
         tierIcon.style.height = '40px';
         tierIcon.style.backgroundColor = {
             'A': 'red',
-            'B': 'teal',
+            'B': 'orange',
             'C': 'green',
-            'D': 'purple',
-            'E': 'orange',
+            'D': 'teal',
+            'E': 'purple',
         }[player.tier] || 'grey';
         tierIcon.style.color = 'white';
         tierIcon.style.display = 'flex';
@@ -309,19 +320,20 @@ document.addEventListener('DOMContentLoaded', () => {
         tierIcon.style.borderRadius = '50%';
         tierIcon.style.marginRight = '10px';
         tierIcon.textContent = player.tier;
-    
+        
         // Create player name
         const playerName = document.createElement('div');
         playerName.style.fontSize = '1.5em';
         playerName.style.fontWeight = 'bold';
         playerName.textContent = player.name;
-    
+        
         // Append elements to the container
         playerContainer.appendChild(auctioningText);
         playerContainer.appendChild(tierIcon);
         playerContainer.appendChild(playerName);
         elements.currentAuctionPlayer.appendChild(playerContainer);
     });
+    
     
 
     socket.on('updateCurrentBid', (currentTotalBid) => {
@@ -414,10 +426,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
                 const tierColors = {
                     'A': 'red',
-                    'B': 'teal',
+                    'B': 'orange',
                     'C': 'green',
-                    'D': 'purple',
-                    'E': 'orange',
+                    'D': 'teal',
+                    'E': 'purple',
                 };
     
                 const tierIcon = document.createElement('div');
@@ -472,10 +484,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
                 const tierColors = {
                     'A': 'red',
-                    'B': 'teal',
+                    'B': 'orange',
                     'C': 'green',
-                    'D': 'purple',
-                    'E': 'orange',
+                    'D': 'teal',
+                    'E': 'purple',
                 };
     
                 const tierIcon = document.createElement('div');
@@ -521,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Team 1": "#007bff", // Blue
             "Team 2": "#28a745", // Green
             "Team 3": "#dc3545", // Red
-            "Team 4": "#ffc107", // Yellow
+            "Team 4": "#ffc107", // orange
             "Team 5": "#e83e8c", // Pink
             "Team 6": "#6c757d", // Gray
             "Team 7": "#17a2b8", // Teal
@@ -532,10 +544,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const tierColors = {
             'A': 'red',
-            'B': 'teal',
+            'B': 'orange',
             'C': 'green',
-            'D': 'purple',
-            'E': 'orange',
+            'D': 'teal',
+            'E': 'purple',
         };
     
         // Define tier order

@@ -413,7 +413,7 @@ function endAuction() {
                 voidAuctionList.push(currentAuctionPlayer);
             }
             io.emit('updateVoidAuctionList', voidAuctionList);
-            io.emit('chatMessage', `<span style="color:pink">${currentAuctionPlayer.tier} 티어: ${currentAuctionPlayer.name}</span>님은 유찰경매로 이동되었습니다.`, 'warning');
+            io.emit('chatMessage', `<span style="color:pink">${currentAuctionPlayer.tier} 티어: ${currentAuctionPlayer.name}</span> 님은 유찰경매로 이동되었습니다.`, 'warning');
 
             io.emit('playAudio', 'end-notbought.mp3');
         }
