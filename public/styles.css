@@ -92,7 +92,7 @@ body {
 
 /* Teams Section */
 .teams-section {
-    width: 27.5%; /* Increased width for Teams section */
+    width: 30%; /* Increased width for Teams section */
     margin-top: 20px; /* Consistent top margin */
     box-sizing: border-box; /* Ensure padding and border are included in width */
     border-radius: 8px; /* Rounded corners */
@@ -135,7 +135,7 @@ body {
 #content-container {
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    width: 43%;
+    width: 40%;
     padding-top: 20px; /* Adjust padding as needed */
     overflow: hidden; /* Hide any overflow content */
     box-sizing: border-box; /* Include padding and border in height calculations */
@@ -282,7 +282,7 @@ body {
 
 /* Auction Lists Section */
 #auction-lists {
-    width: 27.5%; /* Adjust width as needed */
+    width: 30%; /* Adjust width as needed */
     display: flex;
     flex-direction: column;
     gap: 20px; /* Space between sections */
@@ -675,13 +675,14 @@ body {
 
 #player-info {
     display: flex;
+    width: 100%;
     align-items: center;
     margin-bottom: 10px;
 }
 
 #player-picture {
-    width: 800px; /* Adjust size as needed */
-    height: 400px;
+    width: 100%; /* Adjust size as needed */
+    height: 100%;
     object-fit: cover;
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Shadow for depth */
