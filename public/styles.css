@@ -20,6 +20,7 @@ body {
     top: 0;
     bottom: 0;
     z-index: -1;
+    filter: brightness(0.5);
  }
 
 /* Welcome and Name Entry Sections */

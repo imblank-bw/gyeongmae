@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerBar = document.querySelector('timer-bar');
     const timerText = document.querySelector('#auctionTimer');
 
+    document.querySelector('video').playbackRate = 0.72;
+
     // Check if all required elements exist
     for (const [key, element] of Object.entries(elements)) {
         if (!element) {
