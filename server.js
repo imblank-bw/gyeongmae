@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
         if (!teamAssigned) {
             const newTeamNumber = Object.keys(teams).length + 1;
             const newTeamName = `Team ${newTeamNumber}`;
-            let initialPoints = 1000;
+            let initialPoints = 1500;
     
             teams[newTeamName] = {
                 captainName: name,
@@ -203,12 +203,6 @@ io.on('connection', (socket) => {
         // Ensure the current auction player exists
         if (!currentAuctionPlayer || !currentAuctionPlayer.tier) {
             socket.emit('chatMessage', 'No players available for auction or missing tier information.', 'error');
-            return;
-        }
-    
-        // Check if the team already has a player of the same tier
-        if (team.members.some(member => member.tier === currentAuctionPlayer.tier)) {
-            socket.emit('chatMessage', `${teamName}에 ${currentAuctionPlayer.tier} 등급의 플레이어가 이미 있습니다.`, 'warning');
             return;
         }
     

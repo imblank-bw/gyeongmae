@@ -217,12 +217,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         elements.addPlayerForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const playerName = elements.playerNameInput.value.trim(); // Use elements.playerNameInput
-            const playerTier = elements.playerTierSelect.value; // Use elements.playerTierSelect
-            if (playerName && playerTier) {
-                socket.emit('addPlayer', {tier: playerTier, name: playerName});
+            const playerName = elements.playerNameInput.value.trim();
+            let playerTier = elements.playerTierSelect.value.trim();
+        
+            if (playerTier === '') {
+                playerTier = ' '; // Default to an empty space
+            }
+        
+            if (playerName) {
+                socket.emit('addPlayer', { tier: playerTier, name: playerName });
                 elements.playerNameInput.value = ''; // Clear the input field
-                elements.playerTierSelect.value = 'none'; // Reset to default tier
+                elements.playerTierSelect.value = ''; // Reset the select box
+            } else {
+                alert('Player name is required.');
             }
         });
 
@@ -597,60 +604,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div style="display: flex; flex-direction: column; align-items: flex-end; margin-left: 20px;">
                     <p style="margin: 5px 0; color: #ff69b4; font-weight: bold;"><strong>잔여 포인트:</strong> ${team.points}</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                        ${tierOrder.map(tier => `
-                            ${tierSlots[tier] ? `
+                        ${team.members.map((member, index) => `
+                            <div style="display: flex; flex-direction: column; align-items: center;">
                                 <div style="
+                                    width: 60px; height: 60px;
+                                    background-color: ${teamColors[teamName]};
                                     display: flex;
-                                    flex-direction: column;
                                     align-items: center;
-                                ">
-                                    <div style="
-                                        width: 60px; height: 60px;
-                                        background-color: ${tierColors[tier] || 'grey'};
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        color: white;
-                                        font-weight: bold;
-                                        border-radius: 5px;
-                                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                                    ">
-                                        ${tier}
-                                    </div>
-                                    <div style="margin-top: 5px; font-size: 1.2em; text-align: center;">
-                                        ${team.members.find(member => member.tier === tier)?.name || ''}
-                                    </div>
-                                    <div style="margin-top: 3px; font-size: 0.9em; text-align: center;">
-                                        ${team.members.find(member => member.tier === tier)?.purchasePrice || '0'}
-                                    </div>
+                                    justify-content: center;
+                                    border-radius: 5px;
+                                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                                "></div>
+                                <div style="margin-top: 5px; font-size: 1.2em; text-align: center;">
+                                    ${member.name}
                                 </div>
-                            ` : `
-                                <div style="
-                                    display: flex;
-                                    flex-direction: column;
-                                    align-items: center;
-                                ">
-                                    <div style="
-                                        width: 60px; height: 60px;
-                                        background-color: grey;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        color: white;
-                                        font-weight: bold;
-                                        border-radius: 5px;
-                                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                                    ">
-                                        ${tier}
-                                    </div>
-                                    <div style="margin-top: 5px; font-size: 1.2em; text-align: center;">
-                                        
-                                    </div>
-                                    <div style="margin-top: 3px; font-size: 0.9em; text-align: center;">
-                                        
-                                    </div>
+                                <div style="margin-top: 3px; font-size: 0.9em; text-align: center;">
+                                    ${member.purchasePrice || '0'}
                                 </div>
-                            `}
+                            </div>
                         `).join('')}
                     </div>
                 </div>
